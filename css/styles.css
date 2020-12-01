@@ -9,9 +9,13 @@ body {
   background-color: hsl(0, 0%, 75%);
 }
 nav {
-  float: right;
+  overflow: hidden;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
 }
 ul {
+  float: right;
   list-style-type: none;
 }
 li,
@@ -21,13 +25,16 @@ li a {
 li a {
   text-decoration: none;
   text-transform: uppercase;
-  padding: 20px;
+  padding: 20px 0 20px 40px;
   color: hsl(260, 8%, 14%);
-  font-weight: 500;
+  font-weight: 600;
 }
 .main {
   clear: both;
   height: calc(100vh - 60px);
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,8 +52,7 @@ input {
 .wrapper {
   background-color: hsl(257, 27%, 26%);
   padding: 40px;
-  max-width: 900px;
-  width: 90%;
+  width: 100%;
   margin: 20px 0;
 }
 
@@ -96,6 +102,22 @@ button:hover {
 }
 #copy:hover {
   background-color: hsl(257, 27%, 26%);
+}
+
+/* showCount style */
+.count-container {
+  align-self: flex-start;
+}
+
+#number-of-clicks {
+  position: static;
+  margin: 20px 0;
+  font-size: 40px;
+  padding: 20px 40px;
+  display: inline-block;
+  background-color: #fffdff;
+  color: hsl(180, 66%, 49%);
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 600px) {
