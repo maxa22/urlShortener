@@ -3,22 +3,22 @@
     $clickCount = 0;
     $url = '';
     $baseUrl = $_SERVER['HTTP_HOST'] . str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-    if(isset($_GET['submit'])) {
-        $url = trim($_GET['shortUrl']);
+    if(isset($_GET['submit']) && isset($_GET['urlCode'])) {
+        $url = trim($_GET['urlCode']);
         if(!empty($url)) {
             require('inc/connect.php');
              $url = mysqli_real_escape_string($conn, $url);
-             // getting the last 5 characters of the url
+
+             // getting the code from the provided url
              if(strlen($url) > 5) {
                  $shortUrlArray = explode('/', $url);
-                 $shortUrl = $shortUrlArray[count($shortUrlArray) - 1];
+                 $urlCode = ($shortUrlArray[count($shortUrlArray) - 1] != '') ? $shortUrlArray[count($shortUrlArray) - 1] : $shortUrlArray[count($shortUrlArray) - 2];
              }
 
-             $query = "SELECT * FROM url_data WHERE shortenedUrl = '{$shortUrl}' ";
+             $query = "SELECT * FROM url_data WHERE urlCode = '{$urlCode}' ";
              $result = mysqli_query($conn, $query);
              if(mysqli_num_rows($result) > 0) {
-                $data = mysqli_fetch_assoc($result);
-                $queryCount = "SELECT * FROM count_data WHERE id = '{$data['id']}'";
+                $queryCount = "SELECT * FROM count_data WHERE urlCode = '{$urlCode}'";
                 $queryCountResult = mysqli_query($conn, $queryCount);
                 if(mysqli_num_rows($queryCountResult) > 0) {
                     $queryCountData = mysqli_fetch_assoc($queryCountResult);
@@ -48,7 +48,7 @@
         <div class="wrapper">
             <form action="" method="GET">
                 <div class="input-container">
-                    <input type="text" name="shortUrl" placeholder="<?php echo $baseUrl . 'abcde'; ?>" value="<?php echo $url ? $url : ''; ?>">
+                    <input type="text" name="urlCode" placeholder="<?php echo $baseUrl . 'abcde'; ?>" value="<?php echo $url ? $url : ''; ?>">
                     <span> <?php echo $errorMessage; ?> </span>
                 </div>
                 <button name="submit">Track clicks</button>
