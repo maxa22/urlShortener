@@ -11,8 +11,6 @@ require('inc/connect.php');
                 if(!mysqli_query($conn, $countQuery)) {
                     echo 'Error: ' . mysqli_error($conn);
                 }
-      
-
             }
                 header('Location: ' . $redirectUrl['initialUrl']);
                 die();
