@@ -22,12 +22,17 @@ li,
 li a {
   display: inline-block;
 }
-li a {
+li a,
+li a:link,
+li a:visited {
   text-decoration: none;
   text-transform: uppercase;
   padding: 20px 0 20px 40px;
   color: hsl(260, 8%, 14%);
   font-weight: 600;
+}
+li a:hover {
+  text-decoration: underline;
 }
 .main {
   clear: both;
