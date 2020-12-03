@@ -51,8 +51,8 @@
 <!DOCTYPE html>
     <?php require('inc/header.php'); ?>
     <div class="main">
-        <h1>URL SHORTENER</h1>
-        <div class="wrapper copy-to-clipboard active">
+        <h1>Your shortened URL</h1>
+        <div class="wrapper copy-to-clipboard">
             <form action="">
                 <div class="input-container">
                     <input type="text" value="<?php echo $shortenedUrl ? $shortenedUrl : ''; ?>" class="copy-text">

@@ -3,16 +3,16 @@
     $clickCount = 0;
     $url = '';
     $baseUrl = $_SERVER['HTTP_HOST'] . str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-    if(isset($_GET['submit']) && isset($_GET['urlCode'])) {
-        $url = trim($_GET['urlCode']);
-        if(!empty($url)) {
+    if(isset($_POST['submit']) && isset($_POST['urlCode'])) {
+        $url = trim($_POST['urlCode']);
+        if(!empty($url) || strlen($url) < 4) {
             require('inc/connect.php');
-             $url = mysqli_real_escape_string($conn, $url);
+             $urlCode = mysqli_real_escape_string($conn, $url);
 
              // getting the code from the provided url
              if(strlen($url) > 5) {
-                 $shortUrlArray = explode('/', $url);
-                 $urlCode = ($shortUrlArray[count($shortUrlArray) - 1] != '') ? $shortUrlArray[count($shortUrlArray) - 1] : $shortUrlArray[count($shortUrlArray) - 2];
+                 $shortUrlArray = explode('/', $urlCode);
+                 $urlCode =  ($shortUrlArray[count($shortUrlArray) - 1] != '') ? $shortUrlArray[count($shortUrlArray) - 1] : $shortUrlArray[count($shortUrlArray) - 2];
              }
 
              $query = "SELECT * FROM url_data WHERE urlCode = '{$urlCode}' ";
@@ -46,7 +46,7 @@
     </div>
 
         <div class="wrapper">
-            <form action="" method="GET">
+            <form action="" method="POST">
                 <div class="input-container">
                     <input type="text" name="urlCode" placeholder="<?php echo $baseUrl . 'abcde'; ?>" value="<?php echo $url ? $url : ''; ?>">
                     <span> <?php echo $errorMessage; ?> </span>

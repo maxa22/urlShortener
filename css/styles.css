@@ -6,7 +6,7 @@
 
 body {
   min-height: 100vh;
-  background-color: hsl(0, 0%, 75%);
+  background-color: #fffdff;
 }
 nav {
   overflow: hidden;
@@ -15,7 +15,7 @@ nav {
   margin: 0 auto;
 }
 ul {
-  float: right;
+  float: left;
   list-style-type: none;
 }
 li,
@@ -27,12 +27,15 @@ li a:link,
 li a:visited {
   text-decoration: none;
   text-transform: uppercase;
-  padding: 20px 0 20px 40px;
+  padding: 20px 40px 20px 0;
   color: hsl(260, 8%, 14%);
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 16px;
+  transition: transform 0.3s;
 }
 li a:hover {
-  text-decoration: underline;
+  transform: translateY(-1px);
+  color: hsl(257, 7%, 63%);
 }
 .main {
   clear: both;
@@ -40,9 +43,18 @@ li a:hover {
   max-width: 900px;
   width: 90%;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 h1 {
@@ -86,17 +98,15 @@ button {
   height: 50px;
   width: calc(30% - 20px);
   font-weight: 700;
+  transition: all 0.3;
 }
 button:hover {
   background-color: hsl(180, 66%, 60%);
   cursor: pointer;
 }
 .copy-to-clipboard {
-  display: none;
-}
-.copy-to-clipboard.active {
   display: block;
-  padding: 10px 40px;
+  padding: 10px 0;
   background-color: #fffdff;
   color: hsl(257, 27%, 26%);
 }
@@ -110,7 +120,9 @@ button:hover {
 }
 
 /* showCount style */
-.count-container {
+.count-container,
+h1 {
+  -ms-flex-item-align: start;
   align-self: flex-start;
 }
 
@@ -126,6 +138,17 @@ button:hover {
 }
 
 @media only screen and (max-width: 600px) {
+  li a,
+  li a:link,
+  li a:visited {
+    padding: 10px 20px 10px 0;
+    font-size: 13px;
+  }
+  h1,
+  .count-container {
+    -ms-flex-item-align: center;
+    align-self: center;
+  }
   button {
     width: 100%;
   }
@@ -138,10 +161,14 @@ button:hover {
     display: inline-block;
     margin: 3px 0 15px;
   }
-  .copy-to-clipboard.active {
-    padding: 20px 40px;
+  .copy-to-clipboard {
+    padding: 20px;
   }
   .copy-to-clipboard input {
+    text-align: center;
+  }
+  #number-of-clicks {
+    display: block;
     text-align: center;
   }
 }

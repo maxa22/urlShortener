@@ -7,11 +7,10 @@
 <!DOCTYPE html>
     <?php require('inc/header.php'); ?>
     <div class="main">
-        <h1>URL SHORTENER</h1>
         <div class="wrapper">
             <form action="urlcopy.php" method="POST">
                 <div class="input-container">
-                    <input type="text" name="url" placeholder="Shorten the link here...">
+                    <input type="text" name="url" placeholder="Shorten a link here...">
                     <span><?php echo $errorMessage ?></span>
                 </div>
                 <button name="submit">Shorten URL</button>
